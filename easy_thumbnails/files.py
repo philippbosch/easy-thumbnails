@@ -457,8 +457,7 @@ class Thumbnailer(File):
 
     def get_source_modtime(self):
         try:
-            path = self.source_storage.path(self.name)
-            return os.path.getmtime(path)
+            return self.source_storage.modified_time(self.name)
         except OSError:
             return 0
         except NotImplementedError:
@@ -466,8 +465,7 @@ class Thumbnailer(File):
 
     def get_thumbnail_modtime(self, thumbnail_name):
         try:
-            path = self.thumbnail_storage.path(thumbnail_name)
-            return os.path.getmtime(path)
+            return self.thumbnail_storage.modified_time(thumbnail_name)
         except OSError:
             return 0
         except NotImplementedError:
